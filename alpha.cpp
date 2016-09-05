@@ -137,6 +137,7 @@ static void SetAlphaDNA()
 	Wild('X', NX_X)
 	Wild('N', NX_N)
 	Wild('U', NX_U)
+	//XXX
 	}
 
 static void SetAlphaRNA()
@@ -159,6 +160,7 @@ static void SetAlphaRNA()
 	Wild('X', NX_X)
 	Wild('N', NX_N)
 	Wild('U', NX_U)
+	//XXX
 	}
 
 static void SetAlphaAmino()
@@ -166,6 +168,7 @@ static void SetAlphaAmino()
 	Res('A', AX_A)
 	Res('C', AX_C)
 	Res('D', AX_D)
+	Res('E', AX_E)
 	Res('F', AX_F)
 	Res('G', AX_G)
 	Res('H', AX_H)
@@ -183,6 +186,7 @@ static void SetAlphaAmino()
 	Res('W', AX_W)
 	Res('Y', AX_Y)
 	Res('U', NX_U)
+	//XXX
 
 	Wild('B', AX_B)
 	Wild('X', AX_X)

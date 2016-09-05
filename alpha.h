@@ -61,6 +61,7 @@ enum AX
 	AX_B,	// D or N
 	AX_Z,	// E or Q
 	AX_U,
+	//XXX
 	AX_GAP,
 	};
 const unsigned AX_COUNT = AX_GAP + 1;
