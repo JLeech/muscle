@@ -68,20 +68,20 @@ PTR_SCOREMATRIX ReadMx(TextFile &File)
 
 	if (HeadingCount < 20)
 		Quit("Error in matrix file: < 20 headers, line='%s'", Line);
-
 #if TRACE
 	{
 	Log("ReadMx\n");
 	Log("%d headings: ", HeadingCount);
-	for (unsigned i = 0; i < HeadingCount; ++i)
-		Log("%c", Heading[i]);
-	Log("\n");
+	// for (unsigned i = 0; i < HeadingCount; ++i)
+	// 	Log("%c", Heading[i]);
+	// 	printf("--%c\n", Heading[i] );
+	// Log("\n");
 	}
 #endif
 
 // Zero out matrix
-	for (int i = 0; i < MAX_ALPHA; ++i)
-		for (int j = 0; j < MAX_ALPHA; ++j)
+	for (int i = 0; i < 32; ++i)
+		for (int j = 0; j < 32; ++j)
 			Mx[i][j] = 0.0;
 
 // Read data lines
@@ -90,28 +90,29 @@ PTR_SCOREMATRIX ReadMx(TextFile &File)
 		bool EndOfFile = File.GetTrimLine(Line, sizeof(Line));
 		if (EndOfFile)
 			Quit("Premature EOF in matrix file");
-#if	TRACE
-		Log("Line=%s\n", Line);
-#endif
+// #if	TRACE
+// 		Log("Line=%s\n", Line);
+// #endif
 		if (Line[0] == '#')
 			continue;
 
 		char c = Line[0];
-#if	TRACE
-		Log("Row char=%c\n", c);
-#endif
-		if (!IsResidueChar(c))
+// #if	TRACE
+// 		Log("Row char=%c\n", c);
+// #endif
+		if (false)
 			continue;
 		unsigned RowLetter = CharToLetter(c);
-		if (RowLetter >= 20)
+		//printf("%d -> %c \n",RowLetter,c );
+		if (RowLetter >= 32)
 			continue;
-#if	TRACE
-		Log("Row letter = %u\n", RowLetter);
-#endif
+// #if	TRACE
+// 		Log("Row letter = %u\n", RowLetter);
+// #endif
 
 		char *p = Line + 1;
 		char *maxp = p + strlen(Line);
-		for (unsigned Col = 0; Col < HeadingCount - 1; ++Col)
+		for (unsigned Col = 0; Col < HeadingCount; ++Col)
 			{
 			if (p >= maxp)
 				Quit("Too few fields in line of matrix file: '%s'", Line);
@@ -121,16 +122,20 @@ PTR_SCOREMATRIX ReadMx(TextFile &File)
 			while (!isspace(*p))
 				++p;
 			float v = (float) atof(Value);
+			//printf("%f ",v );
 			char HeaderChar = Heading[Col];
-			if (IsResidueChar(HeaderChar))
+			if (true)
 				{
 				unsigned ColLetter = CharToLetter(HeaderChar);
-				if (ColLetter >= 20)
+				//printf("%c -> %u \n", HeaderChar, ColLetter );
+				if (ColLetter >= 32)
 					continue;
+				//printf("%u : %u -> %f \n",RowLetter,ColLetter,v );
 				Mx[RowLetter][ColLetter] = v;
 				}
 			p += 1;
 			}
+		//printf("\n");
 		}
 
 // Sanity check for symmetry

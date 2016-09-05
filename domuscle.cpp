@@ -25,8 +25,11 @@ void DoMuscle()
 
 	TextFile fileIn(g_pstrInFileName);
 	SeqVect v;
+
 	v.FromFASTAFile(fileIn);
+
 	const unsigned uSeqCount = v.Length();
+	//printf("%d\n", uSeqCount );
 
 	if (0 == uSeqCount)
 		Quit("No sequences in input file");
@@ -53,9 +56,21 @@ void DoMuscle()
 	default:
 		Quit("Invalid seq type");
 		}
-	SetAlpha(Alpha);
-	v.FixAlpha();
 
+	SetAlpha(Alpha);
+	// for(int i = 0; i<v.GetSeqCount(); i++){
+	// 	for(int seq_pos = 0; seq_pos < v.GetSeqLength(i); seq_pos++ ){
+	// 		printf("%c",v.GetSeq(i).GetChar(seq_pos) );
+	// 	}
+	// 	printf("\n");
+	// }
+	v.FixAlpha();
+	// for(int i = 0; i<v.GetSeqCount(); i++){
+	// 	for(int seq_pos = 0; seq_pos < v.GetSeqLength(i); seq_pos++ ){
+	// 		printf("%c",v.GetSeq(i).GetChar(seq_pos) );
+	// 	}
+	// 	printf("\n");
+	// }
 	PTR_SCOREMATRIX UserMatrix = 0;
 	if (0 != g_pstrMatrixFileName)
 		{

@@ -11,7 +11,7 @@
 // E. Sonnhammer & V. Hollich, Scoredist: A simple and robust protein sequence
 // distance estimator, BMC Bioinformatics 2005, 6:108.
 
-extern int BLOSUM62[20][20];
+extern int BLOSUM62[21][21];
 extern double BLOSUM62_Expected;
 
 static const double Dayhoff_CalibrationFactor = 1.3370;
@@ -29,10 +29,15 @@ static double Sigma(const MSA &msa, unsigned SeqIndex1, unsigned SeqIndex2,
 	unsigned Length = 0;
 	double Score = 0;
 	const unsigned ColCount = msa.GetColCount();
+	printf("-----------\n");
+	printf("%d\n",ColCount);
+	printf("-----------\n");
 	for (unsigned ColIndex = 0; ColIndex < ColCount; ++ColIndex)
 		{
 		unsigned Letter1 = msa.GetLetterEx(SeqIndex1, ColIndex);
 		unsigned Letter2 = msa.GetLetterEx(SeqIndex2, ColIndex);
+		printf("%d\n",Letter1);
+		printf("%d\n",Letter2);
 		if (Letter1 >= 20 || Letter2 >= 20)
 			continue;
 		++Length;

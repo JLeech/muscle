@@ -60,7 +60,7 @@ enum AX
 
 	AX_B,	// D or N
 	AX_Z,	// E or Q
-
+	AX_U,
 	AX_GAP,
 	};
 const unsigned AX_COUNT = AX_GAP + 1;
@@ -90,7 +90,7 @@ enum NX
 	};
 const unsigned NX_COUNT = NX_GAP + 1;
 
-const unsigned MAX_ALPHA = 20;
+const unsigned MAX_ALPHA = 32;
 const unsigned MAX_ALPHA_EX = AX_COUNT;
 const unsigned MAX_CHAR = 256;
 

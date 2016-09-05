@@ -332,9 +332,10 @@ void Seq::FixAlpha()
 		{
 		char c = *p;
 		if (!IsResidueChar(c))
+			//if (c != 'U')
 			{
 			char w = GetWildcardChar();
-			// Warning("Invalid residue '%c', replaced by '%c'", c, w);
+			printf("Invalid residue '%c', replaced by '%c'", c, w);
 			InvalidLetterWarning(c, w);
 			*p = w;
 			}

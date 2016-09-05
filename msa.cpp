@@ -152,6 +152,10 @@ unsigned MSA::GetLetter(unsigned uSeqIndex, unsigned uIndex) const
 	{
 // TODO: Performance cost?
 	char c = GetChar(uSeqIndex, uIndex);
+//	printf("%c\n",c);
+//	printf("%d\n",uSeqIndex);
+//	printf("%d\n",uIndex);
+//	printf("---------------------\n");
 	unsigned uLetter = CharToLetter(c);
 	if (uLetter >= 20)
 		{
@@ -168,6 +172,7 @@ unsigned MSA::GetLetterEx(unsigned uSeqIndex, unsigned uIndex) const
 	{
 // TODO: Performance cost?
 	char c = GetChar(uSeqIndex, uIndex);
+	//printf("%c\n",c);
 	unsigned uLetter = CharToLetterEx(c);
 	return uLetter;
 	}
@@ -796,10 +801,11 @@ void MSA::FixAlpha()
 		for (unsigned uColIndex = 0; uColIndex < m_uColCount; ++uColIndex)
 			{
 			char c = GetChar(uSeqIndex, uColIndex);
+			//printf("%c\n",c );
 			if (!IsResidueChar(c) && !IsGapChar(c))
 				{
 				char w = GetWildcardChar();
-				// Warning("Invalid letter '%c', replaced by '%c'", c, w);
+				//printf("Invalid letter '%c', replaced by '%c'", c, w);
 				InvalidLetterWarning(c, w);
 				SetChar(uSeqIndex, uColIndex, w);
 				}
